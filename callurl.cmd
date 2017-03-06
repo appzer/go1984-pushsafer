@@ -11,7 +11,11 @@ rem **** batch zone *********************************************************
 
     rem End of batch area. Ensure batch ends execution before reaching
     rem javascript zone
-    exit /b
+	
+	rem Wait 3 seconds
+	timeout /t 3 /nobreak > NUL
+
+    exit
 
 @end
 // **** Javascript zone *****************************************************
@@ -21,10 +25,10 @@ var http = WScript.CreateObject('Msxml2.XMLHTTP.6.0');
 // Retrieve the url parameter
 var url = WScript.Arguments.Item(0)
 
-    // Make the request
+// Make the request
 
-    http.open("GET", url, false);
-    http.send();
+http.open("GET", url, false);
+http.send();
 
-    // All done. Exit
-    WScript.Quit(0);
+// All done. Exit
+WScript.Quit(0);
